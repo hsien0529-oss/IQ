@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VEX IQ 世界賽 2026 · 美國行程</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+TC:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E8341A;
+    --orange: #F47B20;
+    --yellow: #D4920A;
+    --blue: #1A3A6B;
+    --light-blue: #E8F0FC;
+    --bg: #F4F6FA;
+    --card: #FFFFFF;
+    --border: rgba(0,0,0,0.08);
+    --text: #1A2540;
+    --muted: #7A8BA8;
+    --shadow: 0 2px 14px rgba(26,58,107,0.08);
+    --shadow-lg: 0 8px 28px rgba(26,58,107,0.14);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Noto Sans TC',sans-serif; overflow-x:hidden; }
+
+  /* PAGES */
+  .page { display:none; min-height:100vh; }
+  .page.active { display:block; animation: pageFade 0.35s ease; }
+  @keyframes pageFade { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+  /* NAV */
+  .top-nav {
+    position:sticky; top:0; z-index:200;
+    background:rgba(255,255,255,0.94);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+    padding:0 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:54px;
+    box-shadow:0 1px 8px rgba(26,58,107,0.07);
+  }
+  .nav-logo { font-family:'Bebas Neue'; font-size:1.25rem; color:var(--red); letter-spacing:0.08em; }
+  .nav-tabs { display:flex; gap:4px; background:var(--bg); padding:4px; border-radius:100px; }
+  .nav-tab {
+    padding:5px 16px; border-radius:100px; border:none; cursor:pointer;
+    font-family:'Noto Sans TC'; font-size:0.78rem; font-weight:500;
+    transition:all 0.2s; background:transparent; color:var(--muted);
+  }
+  .nav-tab.active { background:var(--blue); color:#fff; box-shadow:0 2px 10px rgba(26,58,107,0.28); }
+
+  /* HERO */
+  .hero {
+    background:linear-gradient(140deg, #1A3A6B 0%, #0D2550 55%, #1B4080 100%);
+    padding:72px 24px 56px; text-align:center; position:relative; overflow:hidden;
+  }
+  .hero::before {
+    content:'VEX'; position:absolute; font-family:'Bebas Neue'; font-size:32vw;
+    color:rgba(255,255,255,0.025); top:50%; left:50%; transform:translate(-50%,-50%);
+    pointer-events:none; white-space:nowrap;
+  }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:7px;
+    background:rgba(232,52,26,0.18); border:1px solid rgba(232,52,26,0.38);
+    border-radius:100px; padding:5px 16px;
+    font-family:'Space Mono'; font-size:0.68rem; color:#FF8A78;
+    letter-spacing:0.1em; text-transform:uppercase; margin-bottom:22px;
+    animation:fadeDown 0.6s ease both;
+  }
+  .hero h1 {
+    font-family:'Bebas Neue'; font-size:clamp(3.2rem,10vw,8rem);
+    line-height:0.93; letter-spacing:0.02em; color:#fff; margin-bottom:14px;
+    animation:fadeDown 0.6s 0.1s ease both;
+  }
+  .hero h1 span { color:#FF6B4A; }
+  .hero-sub { font-size:0.95rem; color:rgba(255,255,255,0.5); font-weight:300; margin-bottom:32px; animation:fadeDown 0.6s 0.2s ease both; }
+  .hero-pills { display:flex; gap:9px; justify-content:center; flex-wrap:wrap; animation:fadeDown 0.6s 0.3s ease both; }
+  .hero-pill {
+    background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15);
+    border-radius:100px; padding:6px 16px; font-size:0.8rem; color:rgba(255,255,255,0.78);
+  }
+  .hero-pill strong { color:#fff; }
+
+  /* CONTAINER */
+  .container { max-width:860px; margin:0 auto; padding:0 20px 80px; }
+  .section-header { text-align:center; padding:52px 0 32px; }
+  .section-label { font-family:'Space Mono'; font-size:0.66rem; color:var(--orange); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:7px; }
+  .section-title  { font-family:'Bebas Neue'; font-size:clamp(2rem,5vw,3rem); letter-spacing:0.04em; color:var(--blue); }
+
+  /* ── SIMPLE PAGE ── */
+  .simple-grid { display:flex; flex-direction:column; gap:9px; }
+
+  .simple-row {
+    display:grid; grid-template-columns:68px 1fr; gap:0 15px; align-items:stretch;
+    opacity:0; transform:translateY(14px); animation:slideUp 0.45s ease forwards;
+  }
+  .simple-row:nth-child(1){animation-delay:.04s}.simple-row:nth-child(2){animation-delay:.08s}
+  .simple-row:nth-child(3){animation-delay:.12s}.simple-row:nth-child(4){animation-delay:.16s}
+  .simple-row:nth-child(5){animation-delay:.20s}.simple-row:nth-child(6){animation-delay:.24s}
+  .simple-row:nth-child(7){animation-delay:.28s}.simple-row:nth-child(8){animation-delay:.32s}
+
+  .simple-date { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding-top:13px; gap:1px; }
+  .s-day   { font-family:'Bebas Neue'; font-size:1.85rem; line-height:1; color:var(--blue); }
+  .s-month { font-family:'Space Mono'; font-size:0.52rem; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase; }
+  .s-wd    { font-size:0.6rem; color:var(--muted); }
+
+  .simple-card {
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:13px 17px; box-shadow:var(--shadow);
+    display:flex; align-items:center; gap:14px;
+    transition:box-shadow 0.2s, transform 0.2s;
+    position:relative; overflow:hidden;
+  }
+  .simple-card:hover { box-shadow:var(--shadow-lg); transform:translateY(-1px); }
+  .simple-card::before { content:''; position:absolute; left:0;top:0;bottom:0; width:3px; border-radius:3px 0 0 3px; }
+  .simple-card.fly::before      { background:var(--red); }
+  .simple-card.move::before     { background:var(--orange); }
+  .simple-card.race::before     { background:#D4920A; }
+  .simple-card.sightsee::before { background:#0EAD7A; }
+  .simple-card.fun::before      { background:#7B5FFF; }
+
+  .s-icon {
+    font-size:1.6rem; flex-shrink:0; width:42px; height:42px;
+    display:flex; align-items:center; justify-content:center; border-radius:12px;
+  }
+  .s-icon.fly      { background:#FFF0EE; }
+  .s-icon.move     { background:#FFF4EA; }
+  .s-icon.race     { background:#FFFBEA; }
+  .s-icon.sightsee { background:#E8FAF5; }
+  .s-icon.fun      { background:#F0EEFF; }
+
+  .s-content { flex:1; min-width:0; }
+  .s-title   { font-size:0.92rem; font-weight:700; color:var(--text); margin-bottom:5px; }
+  .s-points  { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:5px; }
+  .s-point   { font-size:0.7rem; padding:2px 8px; border-radius:100px; background:var(--bg); color:#4A5E78; border:1px solid var(--border); white-space:nowrap; }
+  .s-hotel   { font-size:0.7rem; color:var(--muted); display:flex; align-items:center; gap:5px; }
+
+  .s-right   { display:flex; flex-direction:column; align-items:flex-end; gap:5px; flex-shrink:0; }
+  .s-day-num { font-family:'Space Mono'; font-size:0.58rem; color:var(--muted); white-space:nowrap; }
+  .s-badge   { font-size:0.63rem; padding:2px 9px; border-radius:100px; font-weight:600; white-space:nowrap; }
+  .s-badge.fly      { background:#FFF0EE; color:var(--red); }
+  .s-badge.move     { background:#FFF4EA; color:var(--orange); }
+  .s-badge.race     { background:#FFFBEA; color:#C89A00; }
+  .s-badge.sightsee { background:#E8FAF5; color:#0E9C6C; }
+  .s-badge.fun      { background:#F0EEFF; color:#5B3FCC; }
+
+  /* ── TIMELINE ── */
+  .timeline { position:relative; }
+  .timeline::before {
+    content:''; position:absolute; left:42px; top:0; bottom:0; width:2px;
+    background:linear-gradient(to bottom, transparent, var(--red) 8%, var(--orange) 50%, #D4920A 92%, transparent);
+    opacity:0.2;
+  }
+  .day-card {
+    display:grid; grid-template-columns:84px 1fr; gap:0 18px; margin-bottom:6px;
+    opacity:0; transform:translateY(14px); animation:slideUp 0.45s ease forwards;
+  }
+  .day-card:nth-child(1){animation-delay:.05s}.day-card:nth-child(2){animation-delay:.10s}
+  .day-card:nth-child(3){animation-delay:.15s}.day-card:nth-child(4){animation-delay:.20s}
+  .day-card:nth-child(5){animation-delay:.25s}.day-card:nth-child(6){animation-delay:.30s}
+  .day-card:nth-child(7){animation-delay:.35s}.day-card:nth-child(8){animation-delay:.40s}
+
+  .day-dot { display:flex; flex-direction:column; align-items:center; padding-top:5px; position:relative; z-index:1; }
+  .day-num {
+    width:50px; height:50px; border-radius:50%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    font-family:'Bebas Neue'; line-height:1; flex-shrink:0;
+  }
+  .day-num .num   { font-size:1.4rem; }
+  .day-num .month { font-size:0.48rem; letter-spacing:0.05em; opacity:0.6; }
+  .day-num.fly      { background:#FFF0EE; border:2px solid #F5C0B8; color:var(--red); }
+  .day-num.move     { background:#FFF4EA; border:2px solid #FAD5AD; color:var(--orange); }
+  .day-num.race     { background:#FFFBEA; border:2px solid #FAE49A; color:#C89A00; }
+  .day-num.sightsee { background:#E8FAF5; border:2px solid #9DE8CC; color:#0E9C6C; }
+  .day-num.fun      { background:#F0EEFF; border:2px solid #C9BEFF; color:#5B3FCC; }
+
+  .day-body {
+    background:var(--card); border:1px solid var(--border); border-radius:16px;
+    padding:19px 22px; margin-bottom:11px; box-shadow:var(--shadow);
+    transition:box-shadow 0.2s, transform 0.2s; position:relative; overflow:hidden;
+  }
+  .day-body:hover { box-shadow:var(--shadow-lg); transform:translateY(-1px); }
+  .day-body::before { content:''; position:absolute; left:0;top:0;bottom:0; width:3px; border-radius:3px 0 0 3px; }
+  .day-body.fly::before      { background:linear-gradient(to bottom,#E8341A,#FF8A78); }
+  .day-body.move::before     { background:linear-gradient(to bottom,#F47B20,#FFAA60); }
+  .day-body.race::before     { background:linear-gradient(to bottom,#D4920A,#FFD97A); }
+  .day-body.sightsee::before { background:linear-gradient(to bottom,#0EAD7A,#60E8BF); }
+  .day-body.fun::before      { background:linear-gradient(to bottom,#7B5FFF,#B39FFF); }
+
+  .day-header { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:13px; gap:10px; }
+  .day-tag    { font-family:'Space Mono'; font-size:0.58rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+  .day-title  { font-size:1rem; font-weight:700; color:var(--text); line-height:1.3; }
+  .day-nights { font-family:'Space Mono'; font-size:0.58rem; color:var(--muted); white-space:nowrap; }
+
+  .items { list-style:none; display:flex; flex-direction:column; gap:6px; margin-bottom:12px; }
+  .item  { display:flex; align-items:flex-start; gap:9px; font-size:0.83rem; color:#3A4A60; line-height:1.5; }
+  .item-time { font-family:'Space Mono'; font-size:0.62rem; color:var(--muted); padding-top:2px; min-width:44px; white-space:nowrap; }
+  .item-icon { font-size:0.9rem; flex-shrink:0; }
+  .item-text { flex:1; }
+  .item-text strong { color:var(--text); font-weight:600; }
+
+  .meals { display:flex; gap:6px; flex-wrap:wrap; padding-top:11px; border-top:1px solid var(--border); }
+  .meal  { font-size:0.68rem; padding:2px 9px; border-radius:100px; background:var(--bg); color:var(--muted); border:1px solid var(--border); }
+  .meal span { color:var(--text); margin-left:3px; font-weight:500; }
+
+  .hotel-row { display:flex; align-items:center; gap:7px; font-size:0.76rem; color:var(--muted); margin-top:9px; }
+  .hotel-row strong { color:#4A5E78; font-weight:500; }
+
+  .hbox { border-radius:10px; padding:10px 13px; font-size:0.78rem; margin-top:11px; display:flex; gap:9px; line-height:1.5; }
+  .hbox.yellow { background:#FFFBEA; border:1px solid #FAE49A; color:#8A6800; }
+  .hbox.green  { background:#E8FAF5; border:1px solid #9DE8CC; color:#0A7A56; }
+  .hbox.purple { background:#F2F0FF; border:1px solid #C9BEFF; color:#4A30AA; }
+
+  .flight-bar {
+    background:var(--light-blue); border:1px solid rgba(26,58,107,0.12); border-radius:12px;
+    padding:12px 16px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+    gap:10px; margin-top:11px; font-family:'Space Mono'; font-size:0.76rem;
+  }
+  .flight-from,.flight-to { display:flex; flex-direction:column; gap:2px; }
+  .flight-to { text-align:right; }
+  .fl-code { font-size:1.25rem; font-weight:700; color:var(--blue); letter-spacing:0.04em; }
+  .fl-city { font-size:0.58rem; color:var(--muted); }
+  .fl-time { font-size:0.8rem; color:var(--red); font-weight:700; }
+  .flight-mid { display:flex; flex-direction:column; align-items:center; gap:3px; }
+  .flight-line { display:flex; align-items:center; gap:4px; color:var(--muted); font-size:0.58rem; }
+  .flight-line::before,.flight-line::after { content:'──'; opacity:0.35; }
+  .fl-num { font-size:0.62rem; color:var(--orange); }
+
+  .race-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:11px 0; }
+  .race-mini { background:#FFFBEA; border:1px solid #FAE49A; border-radius:10px; padding:10px; text-align:center; }
+  .race-mini .rm-date { font-family:'Space Mono'; font-size:0.55rem; color:#C89A00; }
+  .race-mini .rm-day  { font-family:'Bebas Neue'; font-size:1.55rem; line-height:1; color:var(--blue); margin:3px 0; }
+  .race-mini .rm-desc { font-size:0.66rem; color:var(--muted); line-height:1.4; }
+
+  /* SWITCH BANNER */
+  .switch-banner {
+    background:linear-gradient(135deg,#1A3A6B,#0D2550);
+    border-radius:16px; padding:26px 28px; margin:44px 0;
+    display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
+  }
+  .sb-label { font-family:'Space Mono'; font-size:0.62rem; color:rgba(255,255,255,0.45); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:4px; }
+  .sb-title { font-size:1.05rem; font-weight:700; color:#fff; }
+  .sb-sub   { font-size:0.78rem; color:rgba(255,255,255,0.5); margin-top:3px; }
+
+  .cta-btn {
+    display:inline-flex; align-items:center; gap:9px;
+    background:#fff; color:var(--blue); border:none; border-radius:100px;
+    padding:12px 28px; font-family:'Noto Sans TC'; font-size:0.85rem; font-weight:700;
+    cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,0.2); transition:all 0.2s; white-space:nowrap;
+  }
+  .cta-btn:hover { background:#F0F5FF; transform:translateY(-2px); box-shadow:0 8px 22px rgba(0,0,0,0.25); }
+
+  /* FOOTER */
+  footer { background:var(--blue); padding:32px 24px; text-align:center; }
+  .ft-logo { font-family:'Bebas Neue'; font-size:1.45rem; color:#FF8A78; letter-spacing:0.1em; margin-bottom:7px; }
+  .ft-info { font-size:0.75rem; color:rgba(255,255,255,0.42); line-height:1.9; }
+
+  /* ROUTE MAP */
+  .route-map-wrap {
+    background: #F0FAF6; border: 1px solid #9DE8CC;
+    border-radius: 14px; overflow: hidden; margin: 14px 0 12px;
+  }
+  .route-map-header {
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;
+    padding:11px 15px; background:#E0F5EC; border-bottom:1px solid #9DE8CC;
+    font-size:0.82rem; font-weight:600; color:#0A6644;
+  }
+  .gmaps-btn {
+    display:inline-flex; align-items:center; gap:5px;
+    background:#0EAD7A; color:#fff; border-radius:100px; padding:5px 14px;
+    font-size:0.72rem; font-weight:600; text-decoration:none; transition:background 0.2s;
+  }
+  .gmaps-btn:hover { background:#0A8A60; }
+  .la-map-iframe { width:100%; height:320px; border:0; display:block; }
+  .stop-timeline {
+    display:flex; align-items:flex-start; padding:12px 16px 6px;
+    overflow-x:auto; scrollbar-width:none; gap:0;
+  }
+  .stop-timeline::-webkit-scrollbar { display:none; }
+  .stop-item {
+    display:flex; flex-direction:column; align-items:center;
+    flex-shrink:0; position:relative; min-width:88px;
+  }
+  .stop-item:not(:last-child)::after {
+    content:''; position:absolute; top:15px; left:calc(50% + 15px);
+    width:calc(100% - 30px); height:2px;
+    background:linear-gradient(to right,#0EAD7A,#9DE8CC);
+  }
+  .stop-dot {
+    width:30px; height:30px; border-radius:50%; background:#0EAD7A; color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Bebas Neue'; font-size:0.95rem; flex-shrink:0; z-index:1;
+    box-shadow:0 2px 8px rgba(14,173,122,0.3);
+  }
+  .stop-label { font-size:0.63rem; color:#1A5040; font-weight:600; text-align:center; margin-top:5px; max-width:78px; line-height:1.3; }
+  .stop-time  { font-family:'Space Mono'; font-size:0.52rem; color:var(--muted); text-align:center; margin-top:2px; }
+  .drive-segs {
+    display:flex; flex-wrap:wrap; gap:5px; padding:6px 15px 12px;
+  }
+  .drive-seg {
+    font-size:0.66rem; padding:2px 9px; border-radius:100px;
+    background:rgba(14,173,122,0.1); color:#0A6644; border:1px solid rgba(14,173,122,0.2);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes slideUp  { from{opacity:0;transform:translateY(14px)}  to{opacity:1;transform:translateY(0)} }
+
+  @media(max-width:600px){
+    .timeline::before{left:30px}
+    .day-card{grid-template-columns:68px 1fr;gap:0 10px}
+    .race-grid{grid-template-columns:1fr}
+    .flight-bar{grid-template-columns:1fr;text-align:center}
+    .flight-to{text-align:center}
+    .simple-row{grid-template-columns:54px 1fr}
+    .switch-banner{flex-direction:column;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <div class="nav-logo">VEX IQ · 2026</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('simple')">📋 簡易版</button>
+    <button class="nav-tab"        onclick="showPage('detail')">📅 完整版</button>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════
+     PAGE A：簡易版
+══════════════════════════════════ -->
+<div class="page active" id="page-simple">
+
+  <div class="hero">
+    <div class="hero-badge">VEX IQ World Championship 2026</div>
+    <h1>美國<span>征戰</span><br>行程一覽</h1>
+    <p class="hero-sub">115 年 04 月 25 日 ─ 05 月 04 日　十天七夜</p>
+    <div class="hero-pills">
+      <span class="hero-pill">✈️ <strong>長榮航空</strong> BR-56 / BR-11</span>
+      <span class="hero-pill">🏆 <strong>STL</strong> VEX IQ 世界賽</span>
+      <span class="hero-pill">🎢 <strong>LA</strong> 環球影城 2 天</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Quick Overview</div>
+      <div class="section-title">行程速覽</div>
+    </div>
+
+    <div class="simple-grid">
+
+      <div class="simple-row">
+        <div class="simple-date"><div class="s-day">25</div><div class="s-month">APR</div><div class="s-wd">六</div></div>
+        <div class="simple-card fly">
+          <div class="s-icon fly">✈️</div>
+          <div class="s-content">
+            <div class="s-title">🛫 桃園出發 → 芝加哥</div>
+            <div class="s-points"><span class="s-point">17:00 機場集合</span><span class="s-point">22:00 BR-56 起飛</span></div>
+            <div class="s-hotel">🏨 芝加哥機場旅館</div>
+          </div>
+          <div class="s-right"><div class="s-day-num">Day 1</div><div class="s-badge fly">出發日</div></div>
+        </div>
+      </div>
+
+      <div class="simple-row">
+        <div class="simple-date"><div class="s-day">26</div><div class="s-month">APR</div><div class="s-wd">日</div></div>
+        <div class="simple-card move">
+          <div class="s-icon move">🚌</div>
+          <div class="s-content">
+            <div class="s-title">芝加哥 → 聖路易斯 STL</div>
+            <div class="s-points"><span class="s-point">包車移動 ~5hr</span><span class="s-point">Springfield 超市</span><span class="s-point">抵達後練習</span></div>
+            <div class="s-hotel">🏨 Marriott St. Louis Grand</div>
+          </div>
+          <div class="s-right"><div class="s-day-num">Day 2</div><div class="s-badge move">移動日</div></div>
+        </div>
+      </div>
+
+      <div class="simple-row">
+        <div class="simple-date"><div class="s-day">27</div><div class="s-month">APR</div><div class="s-wd">一</div></div>
+        <div class="simple-card race">
+          <div class="s-icon race">⚙️</div>
+          <div class="s-content">
+            <div class="s-title">賽前練習日</div>
+            <div class="s-points"><span class="s-point">設備測試</span><span class="s-point">策略調整</span><span class="s-point">模擬演練</span></div>
+            <div class="s-hotel">🏨 Marriott St. Louis Grand</div>
+          </div>
+          <div class="s-right"><div class="s-day-num">Day 3</div><div class="s-badge race">備賽</div></div>
+        </div>
+      </div>
+
+      <div class="simple-row">
+        <div class="simple-date"><div class="s-day" style="font-size:1.25rem;">28–30</div><div class="s-month">APR</div><div class="s-wd">二～四</div></div>
+        <div class="simple-card race">
+          <div class="s-icon race">🏆</div>
+          <div class="s-content">
+            <div class="s-title">VEX IQ 世界賽 正式比賽</div>
+            <div class="s-points"><span class="s-point">資格賽 Day1–2</span><span class="s-point">淘汰賽 Day3</span><span class="s-point">頒獎典禮</span><span class="s-point">4/30 飛洛杉磯</span></div>
+            <div class="s-hotel">✈️ 4/30 WN-952 → 洛杉磯</div>
+          </div>
+          <div class="s-right"><div class="s-day-num">Day 4–6</div><div class="s-badge race">比賽</div></div>
+        </div>
+      </div>
+
+      <div class="simple-row">
+        <div class="simple-date"><div class="s-day">1</div><div class="s-month">MAY</div><div class="s-wd">五</div></div>
+        <div class="simple-card sightsee">
+          <div class="s-icon sightsee">🌴</div>
+          <div class="s-content">
+            <div class="s-title">洛杉磯整日觀光</div>
+            <div class="s-points"><span class="s-point">🚀 加州科學中心</span><span class="s-point">⭐ 好萊塢星光大道</span><span class="s-point">🔭 Griffith Observatory</span><span class="s-point">🌊 Santa Monica</span></div>
+            <div class="s-hotel">🏨 Sheraton LA San Gabriel</div>
+          </div>
+          <div class="s-right"><div class="s-day-num">Day 7</div><div class="s-badge sightsee">觀光</div></div>
+        </div>
+      </div>
+
+      <div class="simple-row">
+        <div class="simple-date"><div class="s-day">2</div><div class="s-month">MAY</div><div class="s-wd">六</div></div>
+        <div class="simple-card fun">
+          <div class="s-icon fun">🎢</div>
+          <div class="s-content">
+            <div class="s-title">環球影城 第 1 日</div>
+            <div class="s-points"><span class="s-point">⚡ 哈利波特世界</span><span class="s-point">🎬 遊園列車</span><span class="s-point">🦕 侏羅紀公園</span></div>
+            <div class="s-hotel">🏨 Sheraton LA San Gabriel</div>
+          </div>
+          <div class="s-right"><div class="s-day-num">Day 8</div><div class="s-badge fun">環球影城</div></div>
+        </div>
+      </div>
+
+      <div class="simple-row">
+        <div class="simple-date"><div class="s-day">3</div><div class="s-month">MAY</div><div class="s-wd">日</div></div>
+        <div class="simple-card fun">
+          <div class="s-icon fun">🍄</div>
+          <div class="s-content">
+            <div class="s-title">環球影城 第 2 日 ＋ 夜班返台</div>
+            <div class="s-points"><span class="s-point">🎮 超級任天堂世界</span><span class="s-point">🦐 阿甘蝦晚餐</span><span class="s-point">00:15 BR-11 返台</span></div>
+            <div class="s-hotel">✈️ 機上</div>
+          </div>
+          <div class="s-right"><div class="s-day-num">Day 9</div><div class="s-badge fun">環球+返台</div></div>
+        </div>
+      </div>
+
+      <div class="simple-row">
+        <div class="simple-date"><div class="s-day">4</div><div class="s-month">MAY</div><div class="s-wd">一</div></div>
+        <div class="simple-card fly">
+          <div class="s-icon fly">🏠</div>
+          <div class="s-content">
+            <div class="s-title">抵達桃園，歡迎回家！</div>
+            <div class="s-points"><span class="s-point">05:20 落地桃園</span><span class="s-point">通關取行李</span></div>
+          </div>
+          <div class="s-right"><div class="s-day-num">Day 10</div><div class="s-badge fly">返台</div></div>
+        </div>
+      </div>
+
+    </div><!-- /simple-grid -->
+
+    <!-- CTA → detail -->
+    <div class="switch-banner">
+      <div>
+        <div class="sb-label">Want more details?</div>
+        <div class="sb-title">查看完整逐日行程</div>
+        <div class="sb-sub">含每日時間表、餐食、住宿、交通</div>
+      </div>
+      <button class="cta-btn" onclick="showPage('detail')">📅 完整版行程 →</button>
+    </div>
+
+  </div>
+  <footer>
+    <div class="ft-logo">VEX IQ WORLD 2026</div>
+    <div class="ft-info">永達旅行社股份有限公司南投分公司<br>聯絡人：賴慧君　☎ 0933-154-234<br>南投縣草屯鎮育英街 45 號　TEL：049-2305555</div>
+  </footer>
+</div>
+
+
+<!-- ══════════════════════════════════
+     PAGE B：完整版
+══════════════════════════════════ -->
+<div class="page" id="page-detail">
+
+  <div class="hero">
+    <div class="hero-badge">完整逐日行程</div>
+    <h1>十天<span>七夜</span><br>完整版</h1>
+    <p class="hero-sub">含時間表 · 餐食 · 住宿 · 交通資訊</p>
+    <div class="hero-pills">
+      <span class="hero-pill">🤖 <strong>VEX IQ</strong> 比賽 3 天</span>
+      <span class="hero-pill">🌴 <strong>LA</strong> 觀光 + 環球 3 天</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Day by Day</div>
+      <div class="section-title">完整行程</div>
+    </div>
+
+    <div class="timeline">
+
+      <!-- 4/25 -->
+      <div class="day-card">
+        <div class="day-dot"><div class="day-num fly"><span class="num">25</span><span class="month">APR</span></div></div>
+        <div class="day-body fly">
+          <div class="day-header"><div><div class="day-tag">Day 1 · 出發</div><div class="day-title">🛫 桃園 → 芝加哥</div></div><div class="day-nights">第 1 天</div></div>
+          <ul class="items">
+            <li class="item"><span class="item-time">17:00</span><span class="item-icon">📍</span><span class="item-text">桃園機場<strong>第二航廈</strong>準時集合</span></li>
+            <li class="item"><span class="item-time">22:00</span><span class="item-icon">✈️</span><span class="item-text">搭乘 <strong>BR-56</strong>（長榮航空）飛往芝加哥</span></li>
+            <li class="item"><span class="item-time">翌日</span><span class="item-icon">🏨</span><span class="item-text">抵達芝加哥，辦理通關，入住機場飯店</span></li>
+          </ul>
+          <div class="flight-bar">
+            <div class="flight-from"><div class="fl-code">TPE</div><div class="fl-city">桃園國際機場</div><div class="fl-time">22:00</div></div>
+            <div class="flight-mid"><div class="fl-num">BR-56</div><div class="flight-line">長榮航空</div></div>
+            <div class="flight-to"><div class="fl-code">ORD</div><div class="fl-city">芝加哥奧黑爾</div><div class="fl-time">21:00（隔日）</div></div>
+          </div>
+          <div class="meals" style="margin-top:11px"><div class="meal">早餐<span>自理</span></div><div class="meal">午餐<span>自理</span></div><div class="meal">晚餐<span>機上</span></div></div>
+          <div class="hotel-row">🏨 <strong>芝加哥機場旅館</strong></div>
+        </div>
+      </div>
+
+      <!-- 4/26 -->
+      <div class="day-card">
+        <div class="day-dot"><div class="day-num move"><span class="num">26</span><span class="month">APR</span></div></div>
+        <div class="day-body move">
+          <div class="day-header"><div><div class="day-tag">Day 2 · 移動</div><div class="day-title">🚌 芝加哥 → 聖路易斯</div></div><div class="day-nights">第 2 天</div></div>
+          <ul class="items">
+            <li class="item"><span class="item-time">08:00</span><span class="item-icon">🍳</span><span class="item-text">飯店早餐後整理行李上車</span></li>
+            <li class="item"><span class="item-time">08:30</span><span class="item-icon">🚌</span><span class="item-text">包車出發，沿 I-55 South（約 5 小時）</span></li>
+            <li class="item"><span class="item-time">途中</span><span class="item-icon">🛒</span><span class="item-text"><strong>Springfield</strong> 超市停靠，補給零食生活用品</span></li>
+            <li class="item"><span class="item-time">17:00</span><span class="item-icon">🏁</span><span class="item-text">抵達聖路易斯，Check-in 飯店</span></li>
+            <li class="item"><span class="item-time">晚上</span><span class="item-icon">⚙️</span><span class="item-text">機器人開箱、設備初步檢測，開始練習</span></li>
+          </ul>
+          <div class="meals"><div class="meal">早餐<span>飯店</span></div><div class="meal">午餐<span>美式簡餐</span></div><div class="meal">晚餐<span>美式簡餐</span></div></div>
+          <div class="hotel-row">🏨 <strong>Marriott St. Louis Grand</strong></div>
+        </div>
+      </div>
+
+      <!-- 4/27 -->
+      <div class="day-card">
+        <div class="day-dot"><div class="day-num race"><span class="num">27</span><span class="month">APR</span></div></div>
+        <div class="day-body race">
+          <div class="day-header"><div><div class="day-tag">Day 3 · 備賽</div><div class="day-title">⚙️ 賽前練習日</div></div><div class="day-nights">第 3 天</div></div>
+          <ul class="items">
+            <li class="item"><span class="item-time">全天</span><span class="item-icon">🤖</span><span class="item-text"><strong>設備測試與策略調整</strong>：機器人校正、程式優化</span></li>
+            <li class="item"><span class="item-time">下午</span><span class="item-icon">🎯</span><span class="item-text">隊伍模擬演練，確認分工與應急方案</span></li>
+          </ul>
+          <div class="hbox yellow"><span>💡</span><span>賽前最後一天！保持體力、充分休息，明天全力以赴！</span></div>
+          <div class="meals" style="margin-top:11px"><div class="meal">三餐<span>餐盒</span></div></div>
+          <div class="hotel-row">🏨 <strong>Marriott St. Louis Grand</strong></div>
+        </div>
+      </div>
+
+      <!-- 4/28-30 -->
+      <div class="day-card">
+        <div class="day-dot">
+          <div class="day-num race" style="width:50px;height:auto;border-radius:12px;padding:7px 0;">
+            <span class="month">APR</span>
+            <span style="font-family:'Bebas Neue';font-size:1.15rem;line-height:1.2;">28–30</span>
+          </div>
+        </div>
+        <div class="day-body race">
+          <div class="day-header"><div><div class="day-tag">Day 4–6 · 正式比賽</div><div class="day-title">🏆 VEX IQ World Championship</div></div><div class="day-nights">第 4–6 天</div></div>
+          <div class="race-grid">
+            <div class="race-mini"><div class="rm-date">APR 28 · MON</div><div class="rm-day">DAY 1</div><div class="rm-desc">資格賽<br>Qualifying</div></div>
+            <div class="race-mini"><div class="rm-date">APR 29 · TUE</div><div class="rm-day">DAY 2</div><div class="rm-desc">資格賽<br>Qualifying</div></div>
+            <div class="race-mini"><div class="rm-date">APR 30 · WED</div><div class="rm-day">DAY 3</div><div class="rm-desc">淘汰賽＆<br>頒獎典禮</div></div>
+          </div>
+          <ul class="items">
+            <li class="item"><span class="item-time">每日</span><span class="item-icon">🏟️</span><span class="item-text">步行至 <strong>America's Center Convention Complex</strong></span></li>
+            <li class="item"><span class="item-time">4/30</span><span class="item-icon">✈️</span><span class="item-text">賽後前往機場，搭乘 <strong>WN-952（21:40）</strong> 飛往洛杉磯</span></li>
+          </ul>
+          <div class="flight-bar">
+            <div class="flight-from"><div class="fl-code">STL</div><div class="fl-city">聖路易斯</div><div class="fl-time">21:40</div></div>
+            <div class="flight-mid"><div class="fl-num">WN-952</div><div class="flight-line">西南航空</div></div>
+            <div class="flight-to"><div class="fl-code">LAX</div><div class="fl-city">洛杉磯</div><div class="fl-time">23:45</div></div>
+          </div>
+          <div class="meals" style="margin-top:11px"><div class="meal">三餐<span>餐盒</span></div></div>
+          <div class="hotel-row">🏨 <strong>Sheraton Los Angeles San Gabriel</strong>（或同等級四星）</div>
+        </div>
+      </div>
+
+      <!-- 5/1 LA -->
+      <div class="day-card">
+        <div class="day-dot"><div class="day-num sightsee"><span class="num">1</span><span class="month">MAY</span></div></div>
+        <div class="day-body sightsee">
+          <div class="day-header"><div><div class="day-tag">Day 7 · 洛杉磯觀光</div><div class="day-title">🌴 LA 整日探索</div></div><div class="day-nights">第 7 天</div></div>
+          <ul class="items">
+            <li class="item"><span class="item-time">09:00</span><span class="item-icon">🍳</span><span class="item-text">飯店早餐後出發</span></li>
+            <li class="item"><span class="item-time">09:30</span><span class="item-icon">🚀</span><span class="item-text"><strong>加州科學中心</strong>（California Science Center）— 真實太空梭 Endeavour 近距離參觀，VEX 選手必訪！（約 2.5 小時）</span></li>
+            <li class="item"><span class="item-time">12:00</span><span class="item-icon">🍔</span><span class="item-text"><strong>午餐：In-N-Out Burger</strong>（Sunset Blvd 好萊塢店）— 加州傳奇漢堡</span></li>
+            <li class="item"><span class="item-time">13:00</span><span class="item-icon">⭐</span><span class="item-text"><strong>好萊塢星光大道</strong> — 步行 5 分鐘可達，拍照找明星星星（約 1 小時）</span></li>
+            <li class="item"><span class="item-time">14:30</span><span class="item-icon">🔭</span><span class="item-text"><strong>Griffith Observatory</strong> — 免費！天文科學展，登高俯瞰全 LA，遠眺 Hollywood Sign（約 2 小時）</span></li>
+            <li class="item"><span class="item-time">16:45</span><span class="item-icon">🤖</span><span class="item-text"><strong>Tesla Diner</strong>（7000 Santa Monica Blvd, West Hollywood）— Optimus 機器人送爆米花！Cybertruck 造型餐盒、巨型電影螢幕，全球最夯未來感餐廳！（約 1 小時）</span></li>
+            <li class="item"><span class="item-time">18:00</span><span class="item-icon">🌊</span><span class="item-text"><strong>Santa Monica Pier</strong> — 踩沙、摩天輪、Route 66 終點打卡，黃昏夕陽超美（約 1.5 小時）</span></li>
+            <li class="item"><span class="item-time">19:30</span><span class="item-icon">🦞</span><span class="item-text">晚餐：Santa Monica 海鮮或美式餐廳</span></li>
+            <li class="item"><span class="item-time">21:00</span><span class="item-icon">🏨</span><span class="item-text">返回飯店（約 40 分鐘）</span></li>
+          </ul>
+
+          <!-- ROUTE MAP -->
+          <div class="route-map-wrap">
+            <div class="route-map-header">
+              🗺️ 5/1 洛杉磯路線地圖
+              <a class="gmaps-btn"
+                href="https://www.google.com/maps/dir/California+Science+Center,+Los+Angeles,+CA/In-N-Out+Burger,+7009+Sunset+Blvd,+Hollywood,+CA/Hollywood+Walk+of+Fame,+Hollywood+Blvd,+Los+Angeles,+CA/Griffith+Observatory,+Los+Angeles,+CA/Tesla+Diner,+7000+Santa+Monica+Blvd,+West+Hollywood,+CA/Santa+Monica+Pier,+Santa+Monica,+CA"
+                target="_blank" rel="noopener">
+                📍 在 Google Maps 開啟完整路線 →
+              </a>
+            </div>
+            <!-- Stop timeline -->
+            <div class="stop-timeline">
+              <div class="stop-item">
+                <div class="stop-dot">1</div>
+                <div class="stop-label">加州科學中心</div>
+                <div class="stop-time">09:30</div>
+              </div>
+              <div class="stop-item">
+                <div class="stop-dot">2</div>
+                <div class="stop-label">In-N-Out Hollywood</div>
+                <div class="stop-time">12:00</div>
+              </div>
+              <div class="stop-item">
+                <div class="stop-dot">3</div>
+                <div class="stop-label">星光大道</div>
+                <div class="stop-time">13:00</div>
+              </div>
+              <div class="stop-item">
+                <div class="stop-dot">4</div>
+                <div class="stop-label">Griffith Observatory</div>
+                <div class="stop-time">14:30</div>
+              </div>
+              <div class="stop-item" style="position:relative;">
+                <div class="stop-dot" style="background:#E8341A;box-shadow:0 2px 8px rgba(232,52,26,0.35);">5</div>
+                <div class="stop-label" style="color:#8A1A0A;">Tesla Diner 🤖</div>
+                <div class="stop-time">16:45</div>
+              </div>
+              <div class="stop-item">
+                <div class="stop-dot">6</div>
+                <div class="stop-label">Santa Monica Pier</div>
+                <div class="stop-time">18:00</div>
+              </div>
+            </div>
+            <!-- Drive info -->
+            <div class="drive-segs">
+              <span class="drive-seg">① → ② 約 8 mi・20 min</span>
+              <span class="drive-seg">② → ③ 步行 5 min</span>
+              <span class="drive-seg">③ → ④ 約 3.5 mi・15 min</span>
+              <span class="drive-seg">④ → ⑤ 約 5 mi・15 min</span>
+              <span class="drive-seg">⑤ → ⑥ 約 6 mi・15 min</span>
+            </div>
+            <!-- Google Maps Embed -->
+            <iframe
+              class="la-map-iframe"
+              src="https://maps.google.com/maps?f=d&saddr=California+Science+Center,+Los+Angeles,+CA&daddr=7009+Sunset+Blvd,+Hollywood,+CA+to:Griffith+Observatory,+Los+Angeles,+CA+to:7000+Santa+Monica+Blvd,+West+Hollywood,+CA+to:Santa+Monica+Pier,+Santa+Monica,+CA&hl=zh-TW&output=embed"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+
+          <div class="hbox" style="background:#FFF0EE;border:1px solid #F5C0B8;color:#8A1A0A;margin-top:12px;">
+            <span>🤖</span>
+            <span><strong>Tesla Diner</strong> 完全切中 VEX IQ 主題！Optimus 機器人服務、未來科技氛圍、Cybertruck 造型餐盒 — 就在 Griffith → Santa Monica 的路上，完全不繞路！<br><small style="color:#B05050;">⚠️ Optimus 機器人為實驗性展示，偶有「休息」情況，但展示區永久開放參觀。</small></span>
+          </div>
+          <div class="hbox green" style="margin-top:8px;"><span>🚀</span><span>加州科學中心特別適合 VEX 選手！Endeavour 太空梭 + 科學工程展，直接呼應比賽的機器人工程思維。</span></div>
+          <div class="meals" style="margin-top:11px"><div class="meal">早餐<span>飯店</span></div><div class="meal">午餐<span>In-N-Out</span></div><div class="meal">下午<span>Tesla Diner</span></div><div class="meal">晚餐<span>自理</span></div></div>
+          <div class="hotel-row">🏨 <strong>Sheraton Los Angeles San Gabriel</strong></div>
+        </div>
+      </div>
+
+      <!-- 5/2 Universal 1 -->
+      <div class="day-card">
+        <div class="day-dot"><div class="day-num fun"><span class="num">2</span><span class="month">MAY</span></div></div>
+        <div class="day-body fun">
+          <div class="day-header"><div><div class="day-tag">Day 8 · 環球影城 第1日</div><div class="day-title">🎢 Universal Studios Hollywood</div></div><div class="day-nights">第 8 天</div></div>
+          <ul class="items">
+            <li class="item"><span class="item-time">08:30</span><span class="item-icon">🍳</span><span class="item-text">飯店早餐後出發</span></li>
+            <li class="item"><span class="item-time">午前</span><span class="item-icon">🧙</span><span class="item-text"><strong>哈利波特魔法世界</strong> — 霍格華茲城堡、禁忌之旅、奶油啤酒必喝</span></li>
+            <li class="item"><span class="item-time">下午</span><span class="item-icon">🎬</span><span class="item-text"><strong>遊園列車</strong> — 360° 金剛 3D、玩命關頭 3D</span></li>
+            <li class="item"><span class="item-time">傍晚</span><span class="item-icon">🦕</span><span class="item-text">侏羅紀公園、水世界表演、辛普森家庭</span></li>
+            <li class="item"><span class="item-time">晚上</span><span class="item-icon">🛍️</span><span class="item-text">City Walk 商店街購買電影周邊紀念品</span></li>
+          </ul>
+          <div class="meals"><div class="meal">早餐<span>飯店</span></div><div class="meal">午餐<span>自理</span></div><div class="meal">晚餐<span>自理</span></div></div>
+          <div class="hotel-row">🏨 <strong>Sheraton Los Angeles San Gabriel</strong></div>
+        </div>
+      </div>
+
+      <!-- 5/3 Universal 2 + fly -->
+      <div class="day-card">
+        <div class="day-dot"><div class="day-num fun"><span class="num">3</span><span class="month">MAY</span></div></div>
+        <div class="day-body fun">
+          <div class="day-header"><div><div class="day-tag">Day 9 · 環球影城 第2日＋返台</div><div class="day-title">🍄 超級任天堂世界 → 夜班返台</div></div><div class="day-nights">第 9 天</div></div>
+          <ul class="items">
+            <li class="item"><span class="item-time">早上</span><span class="item-icon">🍄</span><span class="item-text"><strong>超級任天堂世界</strong> — 瑪利歐賽車 AR、Yoshi 冒險</span></li>
+            <li class="item"><span class="item-time">下午</span><span class="item-icon">🕹️</span><span class="item-text">神偷奶爸 Minion Land、變形金剛 3D、功夫熊貓</span></li>
+            <li class="item"><span class="item-time">18:00</span><span class="item-icon">🦐</span><span class="item-text"><strong>晚餐：阿甘蝦特色餐廳</strong>（Bubba Gump Shrimp）</span></li>
+            <li class="item"><span class="item-time">20:00</span><span class="item-icon">🧳</span><span class="item-text">前往 LAX 機場，辦理登機手續</span></li>
+            <li class="item"><span class="item-time">00:15</span><span class="item-icon">✈️</span><span class="item-text">搭乘 <strong>BR-11</strong> 飛越換日線，返回台灣</span></li>
+          </ul>
+          <div class="flight-bar">
+            <div class="flight-from"><div class="fl-code">LAX</div><div class="fl-city">洛杉磯</div><div class="fl-time">00:15（5/3）</div></div>
+            <div class="flight-mid"><div class="fl-num">BR-11</div><div class="flight-line">長榮航空</div></div>
+            <div class="flight-to"><div class="fl-code">TPE</div><div class="fl-city">桃園國際機場</div><div class="fl-time">05:20（5/4）</div></div>
+          </div>
+          <div class="hbox purple"><span>🎉</span><span>帶著比賽的榮耀、環球的歡笑，以及滿滿的美國回憶，踏上歸途！</span></div>
+          <div class="meals" style="margin-top:11px"><div class="meal">早餐<span>飯店</span></div><div class="meal">午餐<span>自理</span></div><div class="meal">晚餐<span>阿甘蝦</span></div></div>
+          <div class="hotel-row">✈️ <strong>機上</strong></div>
+        </div>
+      </div>
+
+      <!-- 5/4 -->
+      <div class="day-card">
+        <div class="day-dot"><div class="day-num fly"><span class="num">4</span><span class="month">MAY</span></div></div>
+        <div class="day-body fly">
+          <div class="day-header"><div><div class="day-tag">Day 10 · 返抵</div><div class="day-title">🏠 抵達桃園，歡迎回家！</div></div><div class="day-nights">第 10 天</div></div>
+          <ul class="items">
+            <li class="item"><span class="item-time">05:20</span><span class="item-icon">🛬</span><span class="item-text">抵達<strong>桃園國際機場</strong>，辦理通關、提領行李</span></li>
+            <li class="item"><span class="item-time">之後</span><span class="item-icon">🏡</span><span class="item-text">各自搭車返家，完美收官！</span></li>
+          </ul>
+          <div class="meals"><div class="meal">早餐<span>機上</span></div><div class="meal">午餐<span>機上</span></div><div class="meal">晚餐<span>自理</span></div></div>
+        </div>
+      </div>
+
+    </div><!-- /timeline -->
+
+    <!-- CTA → simple -->
+    <div class="switch-banner">
+      <div>
+        <div class="sb-label">Quick View</div>
+        <div class="sb-title">回到簡易版行程</div>
+        <div class="sb-sub">一頁看完所有日期與重點</div>
+      </div>
+      <button class="cta-btn" onclick="showPage('simple')">📋 簡易版 →</button>
+    </div>
+
+  </div>
+  <footer>
+    <div class="ft-logo">VEX IQ WORLD 2026</div>
+    <div class="ft-info">永達旅行社股份有限公司南投分公司<br>聯絡人：賴慧君　☎ 0933-154-234<br>南投縣草屯鎮育英街 45 號　TEL：049-2305555</div>
+  </footer>
+</div>
+
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach(t => {
+    t.classList.toggle('active',
+      (id === 'simple' && t.textContent.includes('簡易')) ||
+      (id === 'detail' && t.textContent.includes('完整'))
+    );
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
