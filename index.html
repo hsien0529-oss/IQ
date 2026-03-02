@@ -301,6 +301,44 @@
     background:rgba(14,173,122,0.1); color:#0A6644; border:1px solid rgba(14,173,122,0.2);
   }
 
+  /* VERSION TOGGLE */
+  .version-toggle {
+    display:flex; gap:0; background:var(--bg); border-radius:12px; padding:4px;
+    margin-bottom:16px; border:1px solid var(--border);
+  }
+  .version-btn {
+    flex:1; padding:10px 12px; border:none; border-radius:10px; cursor:pointer;
+    font-family:'Noto Sans TC'; font-size:0.78rem; font-weight:600;
+    transition:all 0.25s; background:transparent; color:var(--muted);
+    display:flex; flex-direction:column; align-items:center; gap:3px; line-height:1.3;
+  }
+  .version-btn .v-label { font-family:'Space Mono'; font-size:0.55rem; letter-spacing:0.08em; text-transform:uppercase; }
+  .version-btn.active-a { background:linear-gradient(135deg,#F47B20,#E06810); color:#fff; box-shadow:0 3px 12px rgba(244,123,32,0.35); }
+  .version-btn.active-b { background:linear-gradient(135deg,#0EAD7A,#0A8A60); color:#fff; box-shadow:0 3px 12px rgba(14,173,122,0.35); }
+  .version-btn:not(.active-a):not(.active-b):hover { background:rgba(0,0,0,0.04); }
+  .version-panel { display:none; animation:panelFade 0.35s ease; }
+  .version-panel.active { display:block; }
+  @keyframes panelFade { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+  .version-badge {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:4px 12px; border-radius:100px; font-size:0.68rem; font-weight:600; margin-bottom:10px;
+  }
+  .version-badge.badge-a { background:#FFF4EA; color:#C05A00; border:1px solid #FAD5AD; }
+  .version-badge.badge-b { background:#E8FAF5; color:#0A7A56; border:1px solid #9DE8CC; }
+
+  /* simple page version toggle */
+  .simple-version-wrap { margin-top:6px; }
+  .simple-ver-tabs { display:flex; gap:4px; margin-bottom:6px; }
+  .simple-ver-btn {
+    flex:1; padding:6px 8px; border:1px solid var(--border); border-radius:8px;
+    background:var(--bg); cursor:pointer; font-family:'Noto Sans TC'; font-size:0.68rem;
+    font-weight:600; color:var(--muted); transition:all 0.2s; text-align:center;
+  }
+  .simple-ver-btn.sva { border-color:#FAD5AD; background:#FFF4EA; color:#C05A00; }
+  .simple-ver-btn.svb { border-color:#9DE8CC; background:#E8FAF5; color:#0A7A56; }
+  .simple-ver-panel { display:none; }
+  .simple-ver-panel.active { display:block; }
+
   /* ANIMATIONS */
   @keyframes fadeDown { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:translateY(0)} }
   @keyframes slideUp  { from{opacity:0;transform:translateY(14px)}  to{opacity:1;transform:translateY(0)} }
@@ -409,8 +447,21 @@
         <div class="simple-card sightsee">
           <div class="s-icon sightsee">🌴</div>
           <div class="s-content">
-            <div class="s-title">洛杉磯整日觀光</div>
-            <div class="s-points"><span class="s-point">🚀 加州科學中心</span><span class="s-point">⭐ 好萊塢星光大道</span><span class="s-point">🔭 Griffith Observatory</span><span class="s-point">🌊 Santa Monica</span></div>
+            <div class="s-title">洛杉磯整日觀光 <span style="font-size:0.7rem;color:#0EAD7A;">⬇ 兩版可選</span></div>
+            <div class="simple-version-wrap">
+              <div class="simple-ver-tabs">
+                <button class="simple-ver-btn sva" onclick="switchSimpleVer('a',this)">A Outlet＋精簡（推薦）</button>
+                <button class="simple-ver-btn" onclick="switchSimpleVer('b',this)">B 科學中心+星光大道</button>
+              </div>
+              <div class="simple-ver-panel active" id="sv-a">
+                <div class="s-points"><span class="s-point">🛍️ Citadel Outlets</span><span class="s-point">🔭 Griffith</span><span class="s-point">🤖 Tesla Diner</span><span class="s-point">🌊 Santa Monica</span></div>
+                <div style="font-size:0.63rem;color:#0A7A56;margin-top:3px;">✅ Nike/Adidas 折扣 · 動線更順 · 更適合學生</div>
+              </div>
+              <div class="simple-ver-panel" id="sv-b">
+                <div class="s-points"><span class="s-point">🔬 加州科學中心</span><span class="s-point">⭐ 星光大道</span><span class="s-point">🔭 Griffith</span><span class="s-point">🤖 Tesla Diner</span><span class="s-point">🌊 Santa Monica</span></div>
+                <div style="font-size:0.63rem;color:#B05050;margin-top:3px;">⚠️ Endeavour 太空梭目前無法參觀</div>
+              </div>
+            </div>
             <div class="s-hotel">🏨 Sheraton LA San Gabriel</div>
           </div>
           <div class="s-right"><div class="s-day-num">Day 7</div><div class="s-badge sightsee">觀光</div></div>
@@ -579,89 +630,190 @@
         </div>
       </div>
 
-      <!-- 5/1 LA -->
+      <!-- 5/1 LA - VERSION TOGGLE -->
       <div class="day-card">
         <div class="day-dot"><div class="day-num sightsee"><span class="num">1</span><span class="month">MAY</span></div></div>
         <div class="day-body sightsee">
           <div class="day-header"><div><div class="day-tag">Day 7 · 洛杉磯觀光</div><div class="day-title">🌴 LA 整日探索</div></div><div class="day-nights">第 7 天</div></div>
-          <ul class="items">
-            <li class="item"><span class="item-time">09:00</span><span class="item-icon">🍳</span><span class="item-text">飯店早餐後出發</span></li>
-            <li class="item"><span class="item-time">09:30</span><span class="item-icon">🚀</span><span class="item-text"><strong>加州科學中心</strong>（California Science Center）— 真實太空梭 Endeavour 近距離參觀，VEX 選手必訪！（約 2.5 小時）</span></li>
-            <li class="item"><span class="item-time">12:00</span><span class="item-icon">🍔</span><span class="item-text"><strong>午餐：In-N-Out Burger</strong>（Sunset Blvd 好萊塢店）— 加州傳奇漢堡</span></li>
-            <li class="item"><span class="item-time">13:00</span><span class="item-icon">⭐</span><span class="item-text"><strong>好萊塢星光大道</strong> — 步行 5 分鐘可達，拍照找明星星星（約 1 小時）</span></li>
-            <li class="item"><span class="item-time">14:30</span><span class="item-icon">🔭</span><span class="item-text"><strong>Griffith Observatory</strong> — 免費！天文科學展，登高俯瞰全 LA，遠眺 Hollywood Sign（約 2 小時）</span></li>
-            <li class="item"><span class="item-time">16:45</span><span class="item-icon">🤖</span><span class="item-text"><strong>Tesla Diner</strong>（7000 Santa Monica Blvd, West Hollywood）— Optimus 機器人送爆米花！Cybertruck 造型餐盒、巨型電影螢幕，全球最夯未來感餐廳！（約 1 小時）</span></li>
-            <li class="item"><span class="item-time">18:00</span><span class="item-icon">🌊</span><span class="item-text"><strong>Santa Monica Pier</strong> — 踩沙、摩天輪、Route 66 終點打卡，黃昏夕陽超美（約 1.5 小時）</span></li>
-            <li class="item"><span class="item-time">19:30</span><span class="item-icon">🦞</span><span class="item-text">晚餐：Santa Monica 海鮮或美式餐廳</span></li>
-            <li class="item"><span class="item-time">21:00</span><span class="item-icon">🏨</span><span class="item-text">返回飯店（約 40 分鐘）</span></li>
-          </ul>
 
-          <!-- ROUTE MAP -->
-          <div class="route-map-wrap">
-            <div class="route-map-header">
-              🗺️ 5/1 洛杉磯路線地圖
-              <a class="gmaps-btn"
-                href="https://www.google.com/maps/dir/California+Science+Center,+Los+Angeles,+CA/In-N-Out+Burger,+7009+Sunset+Blvd,+Hollywood,+CA/Hollywood+Walk+of+Fame,+Hollywood+Blvd,+Los+Angeles,+CA/Griffith+Observatory,+Los+Angeles,+CA/Tesla+Diner,+7000+Santa+Monica+Blvd,+West+Hollywood,+CA/Santa+Monica+Pier,+Santa+Monica,+CA"
-                target="_blank" rel="noopener">
-                📍 在 Google Maps 開啟完整路線 →
-              </a>
-            </div>
-            <!-- Stop timeline -->
-            <div class="stop-timeline">
-              <div class="stop-item">
-                <div class="stop-dot">1</div>
-                <div class="stop-label">加州科學中心</div>
-                <div class="stop-time">09:30</div>
-              </div>
-              <div class="stop-item">
-                <div class="stop-dot">2</div>
-                <div class="stop-label">In-N-Out Hollywood</div>
-                <div class="stop-time">12:00</div>
-              </div>
-              <div class="stop-item">
-                <div class="stop-dot">3</div>
-                <div class="stop-label">星光大道</div>
-                <div class="stop-time">13:00</div>
-              </div>
-              <div class="stop-item">
-                <div class="stop-dot">4</div>
-                <div class="stop-label">Griffith Observatory</div>
-                <div class="stop-time">14:30</div>
-              </div>
-              <div class="stop-item" style="position:relative;">
-                <div class="stop-dot" style="background:#E8341A;box-shadow:0 2px 8px rgba(232,52,26,0.35);">5</div>
-                <div class="stop-label" style="color:#8A1A0A;">Tesla Diner 🤖</div>
-                <div class="stop-time">16:45</div>
-              </div>
-              <div class="stop-item">
-                <div class="stop-dot">6</div>
-                <div class="stop-label">Santa Monica Pier</div>
-                <div class="stop-time">18:00</div>
-              </div>
-            </div>
-            <!-- Drive info -->
-            <div class="drive-segs">
-              <span class="drive-seg">① → ② 約 8 mi・20 min</span>
-              <span class="drive-seg">② → ③ 步行 5 min</span>
-              <span class="drive-seg">③ → ④ 約 3.5 mi・15 min</span>
-              <span class="drive-seg">④ → ⑤ 約 5 mi・15 min</span>
-              <span class="drive-seg">⑤ → ⑥ 約 6 mi・15 min</span>
-            </div>
-            <!-- Google Maps Embed -->
-            <iframe
-              class="la-map-iframe"
-              src="https://maps.google.com/maps?f=d&saddr=California+Science+Center,+Los+Angeles,+CA&daddr=7009+Sunset+Blvd,+Hollywood,+CA+to:Griffith+Observatory,+Los+Angeles,+CA+to:7000+Santa+Monica+Blvd,+West+Hollywood,+CA+to:Santa+Monica+Pier,+Santa+Monica,+CA&hl=zh-TW&output=embed"
-              allowfullscreen
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+          <!-- VERSION TOGGLE -->
+          <div class="version-toggle">
+            <button class="version-btn active-a" id="vbtn-a" onclick="switchVersion('a')">
+              <span class="v-label">Version A · 推薦</span>
+              🛍️ Citadel Outlets＋精簡
+            </button>
+            <button class="version-btn" id="vbtn-b" onclick="switchVersion('b')">
+              <span class="v-label">Version B</span>
+              🔬 科學中心＋星光大道
+            </button>
           </div>
 
-          <div class="hbox" style="background:#FFF0EE;border:1px solid #F5C0B8;color:#8A1A0A;margin-top:12px;">
-            <span>🤖</span>
-            <span><strong>Tesla Diner</strong> 完全切中 VEX IQ 主題！Optimus 機器人服務、未來科技氛圍、Cybertruck 造型餐盒 — 就在 Griffith → Santa Monica 的路上，完全不繞路！<br><small style="color:#B05050;">⚠️ Optimus 機器人為實驗性展示，偶有「休息」情況，但展示區永久開放參觀。</small></span>
+          <!-- ═══ VERSION A ═══ -->
+          <div class="version-panel active" id="panel-a">
+            <div class="version-badge badge-a">🅰️ 推薦路線 · Citadel Outlets＋精簡動線</div>
+            <ul class="items">
+              <li class="item"><span class="item-time">09:30</span><span class="item-icon">🍳</span><span class="item-text">飯店早餐後出發，往南 15 分鐘到 Citadel</span></li>
+              <li class="item"><span class="item-time">10:00</span><span class="item-icon">🛍️</span><span class="item-text"><strong>Citadel Outlets</strong> — 超過 130 品牌！Nike、Adidas、Under Armour、H&M、Coach 等折扣店，國中生最愛！（約 1.5 小時）</span></li>
+              <li class="item"><span class="item-time">12:00</span><span class="item-icon">🍔</span><span class="item-text"><strong>午餐：In-N-Out Burger</strong>（Sunset Blvd 好萊塢店）— 加州傳奇漢堡</span></li>
+              <li class="item"><span class="item-time">13:15</span><span class="item-icon">🔭</span><span class="item-text"><strong>Griffith Observatory</strong> — 免費！天文科學展，登高俯瞰全 LA，遠眺 Hollywood Sign（約 1.5 小時）</span></li>
+              <li class="item"><span class="item-time">15:15</span><span class="item-icon">🤖</span><span class="item-text"><strong>Tesla Diner</strong>（7001 Santa Monica Blvd）— Optimus 機器人送爆米花！未來感餐廳！（約 1 小時）</span></li>
+              <li class="item"><span class="item-time">16:45</span><span class="item-icon">🌊</span><span class="item-text"><strong>Santa Monica Pier</strong> — 踩沙、摩天輪、Route 66 終點打卡，黃昏夕陽超美（約 1.5 小時）</span></li>
+              <li class="item"><span class="item-time">18:30</span><span class="item-icon">🦞</span><span class="item-text">晚餐：Santa Monica 海鮮或美式餐廳</span></li>
+              <li class="item"><span class="item-time">20:00</span><span class="item-icon">🏨</span><span class="item-text">返回飯店（約 40 分鐘）</span></li>
+            </ul>
+
+            <!-- ROUTE MAP B -->
+            <div class="route-map-wrap" style="background:#FFF8F0;border-color:#FAD5AD;">
+              <div class="route-map-header" style="background:#FFEDDA;border-color:#FAD5AD;color:#8A4A00;">
+                🗺️ 版本 A 路線地圖
+                <a class="gmaps-btn" style="background:#F47B20;"
+                  href="https://www.google.com/maps/dir/Sheraton+Los+Angeles+San+Gabriel/Citadel+Outlets,+100+Citadel+Dr,+Commerce,+CA/In-N-Out+Burger,+7009+Sunset+Blvd,+Hollywood,+CA/Griffith+Observatory,+Los+Angeles,+CA/Tesla+Diner,+7001+Santa+Monica+Blvd,+Los+Angeles,+CA/Santa+Monica+Pier,+Santa+Monica,+CA"
+                  target="_blank" rel="noopener">
+                  📍 在 Google Maps 開啟 →
+                </a>
+              </div>
+              <div class="stop-timeline">
+                <div class="stop-item">
+                  <div class="stop-dot" style="background:#F47B20;box-shadow:0 2px 8px rgba(244,123,32,0.3);">1</div>
+                  <div class="stop-label">Citadel Outlets</div>
+                  <div class="stop-time">10:00</div>
+                </div>
+                <div class="stop-item">
+                  <div class="stop-dot" style="background:#F47B20;box-shadow:0 2px 8px rgba(244,123,32,0.3);">2</div>
+                  <div class="stop-label">In-N-Out Hollywood</div>
+                  <div class="stop-time">12:00</div>
+                </div>
+                <div class="stop-item">
+                  <div class="stop-dot" style="background:#F47B20;box-shadow:0 2px 8px rgba(244,123,32,0.3);">3</div>
+                  <div class="stop-label">Griffith Observatory</div>
+                  <div class="stop-time">13:15</div>
+                </div>
+                <div class="stop-item" style="position:relative;">
+                  <div class="stop-dot" style="background:#E8341A;box-shadow:0 2px 8px rgba(232,52,26,0.35);">4</div>
+                  <div class="stop-label" style="color:#8A1A0A;">Tesla Diner 🤖</div>
+                  <div class="stop-time">15:15</div>
+                </div>
+                <div class="stop-item">
+                  <div class="stop-dot" style="background:#F47B20;box-shadow:0 2px 8px rgba(244,123,32,0.3);">5</div>
+                  <div class="stop-label">Santa Monica Pier</div>
+                  <div class="stop-time">16:45</div>
+                </div>
+              </div>
+              <div class="drive-segs">
+                <span class="drive-seg" style="background:rgba(244,123,32,0.1);color:#8A4A00;border-color:rgba(244,123,32,0.2);">飯店 → ① 約 15 min</span>
+                <span class="drive-seg" style="background:rgba(244,123,32,0.1);color:#8A4A00;border-color:rgba(244,123,32,0.2);">① → ② 約 35 min</span>
+                <span class="drive-seg" style="background:rgba(244,123,32,0.1);color:#8A4A00;border-color:rgba(244,123,32,0.2);">② → ③ 約 15 min</span>
+                <span class="drive-seg" style="background:rgba(244,123,32,0.1);color:#8A4A00;border-color:rgba(244,123,32,0.2);">③ → ④ 約 15 min</span>
+                <span class="drive-seg" style="background:rgba(244,123,32,0.1);color:#8A4A00;border-color:rgba(244,123,32,0.2);">④ → ⑤ 約 25 min</span>
+              </div>
+              <iframe
+                class="la-map-iframe"
+                src="https://maps.google.com/maps?f=d&saddr=Sheraton+Los+Angeles+San+Gabriel&daddr=Citadel+Outlets,+100+Citadel+Dr,+Commerce,+CA+to:7009+Sunset+Blvd,+Hollywood,+CA+to:Griffith+Observatory,+Los+Angeles,+CA+to:7001+Santa+Monica+Blvd,+Los+Angeles,+CA+to:Santa+Monica+Pier,+Santa+Monica,+CA&hl=zh-TW&output=embed"
+                allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+
+            <div class="hbox green" style="margin-top:12px;">
+              <span>✅</span>
+              <span><strong>為什麼推薦版本 A？</strong><br>
+              ① Citadel Outlets 離飯店僅 15 分鐘，Nike/Adidas/Under Armour 折扣店對國中生超有吸引力<br>
+              ② 拿掉吸引力最弱的「科學中心（Endeavour 已下架）」和「星光大道（國中生無感）」<br>
+              ③ 只有 5 站不是 7 站，動線更從容不趕<br>
+              ④ 更早到 Santa Monica 看夕陽，時間更充裕</span>
+            </div>
+            <div class="hbox" style="background:#FFF0EE;border:1px solid #F5C0B8;color:#8A1A0A;margin-top:8px;">
+              <span>🤖</span>
+              <span><strong>Tesla Diner</strong> 完全切中 VEX IQ 主題！Optimus 機器人服務、未來科技氛圍 — 就在 Griffith → Santa Monica 的路上，完全不繞路！<br><small>⚠️ Optimus 機器人為實驗性展示，偶有「休息」情況，但展示區永遠開放參觀。</small></span>
+            </div>
           </div>
-          <div class="hbox green" style="margin-top:8px;"><span>🚀</span><span>加州科學中心特別適合 VEX 選手！Endeavour 太空梭 + 科學工程展，直接呼應比賽的機器人工程思維。</span></div>
+
+          <!-- ═══ VERSION B ═══ -->
+          <div class="version-panel" id="panel-b">
+            <div class="version-badge badge-b">🅱️ 原版路線 · 科學中心＋星光大道</div>
+            <ul class="items">
+              <li class="item"><span class="item-time">09:00</span><span class="item-icon">🍳</span><span class="item-text">飯店早餐後出發</span></li>
+              <li class="item"><span class="item-time">09:45</span><span class="item-icon">🔬</span><span class="item-text"><strong>加州科學中心</strong>（California Science Center）— Science Storms、生態系展覽、IMAX（約 2 小時）</span></li>
+              <li class="item"><span class="item-time">12:15</span><span class="item-icon">🍔</span><span class="item-text"><strong>午餐：In-N-Out Burger</strong>（Sunset Blvd 好萊塢店）— 加州傳奇漢堡</span></li>
+              <li class="item"><span class="item-time">13:15</span><span class="item-icon">⭐</span><span class="item-text"><strong>好萊塢星光大道</strong> — 步行 5 分鐘可達，拍照找明星星星（約 45 分鐘）</span></li>
+              <li class="item"><span class="item-time">14:30</span><span class="item-icon">🔭</span><span class="item-text"><strong>Griffith Observatory</strong> — 免費！天文科學展，登高俯瞰全 LA，遠眺 Hollywood Sign（約 1.5 小時）</span></li>
+              <li class="item"><span class="item-time">16:30</span><span class="item-icon">🤖</span><span class="item-text"><strong>Tesla Diner</strong>（7001 Santa Monica Blvd）— Optimus 機器人送爆米花！未來感餐廳！（約 1 小時）</span></li>
+              <li class="item"><span class="item-time">18:00</span><span class="item-icon">🌊</span><span class="item-text"><strong>Santa Monica Pier</strong> — 踩沙、摩天輪、Route 66 終點打卡，黃昏夕陽超美（約 1.5 小時）</span></li>
+              <li class="item"><span class="item-time">19:30</span><span class="item-icon">🦞</span><span class="item-text">晚餐：Santa Monica 海鮮或美式餐廳</span></li>
+              <li class="item"><span class="item-time">21:00</span><span class="item-icon">🏨</span><span class="item-text">返回飯店（約 40 分鐘）</span></li>
+            </ul>
+
+            <!-- ROUTE MAP A -->
+            <div class="route-map-wrap">
+              <div class="route-map-header">
+                🗺️ 版本 B 路線地圖
+                <a class="gmaps-btn"
+                  href="https://www.google.com/maps/dir/Sheraton+Los+Angeles+San+Gabriel/California+Science+Center,+Los+Angeles,+CA/In-N-Out+Burger,+7009+Sunset+Blvd,+Hollywood,+CA/Hollywood+Walk+of+Fame,+Hollywood+Blvd,+Los+Angeles,+CA/Griffith+Observatory,+Los+Angeles,+CA/Tesla+Diner,+7001+Santa+Monica+Blvd,+Los+Angeles,+CA/Santa+Monica+Pier,+Santa+Monica,+CA"
+                  target="_blank" rel="noopener">
+                  📍 在 Google Maps 開啟 →
+                </a>
+              </div>
+              <div class="stop-timeline">
+                <div class="stop-item">
+                  <div class="stop-dot">1</div>
+                  <div class="stop-label">加州科學中心</div>
+                  <div class="stop-time">09:45</div>
+                </div>
+                <div class="stop-item">
+                  <div class="stop-dot">2</div>
+                  <div class="stop-label">In-N-Out Hollywood</div>
+                  <div class="stop-time">12:15</div>
+                </div>
+                <div class="stop-item">
+                  <div class="stop-dot">3</div>
+                  <div class="stop-label">星光大道</div>
+                  <div class="stop-time">13:15</div>
+                </div>
+                <div class="stop-item">
+                  <div class="stop-dot">4</div>
+                  <div class="stop-label">Griffith Observatory</div>
+                  <div class="stop-time">14:30</div>
+                </div>
+                <div class="stop-item" style="position:relative;">
+                  <div class="stop-dot" style="background:#E8341A;box-shadow:0 2px 8px rgba(232,52,26,0.35);">5</div>
+                  <div class="stop-label" style="color:#8A1A0A;">Tesla Diner 🤖</div>
+                  <div class="stop-time">16:30</div>
+                </div>
+                <div class="stop-item">
+                  <div class="stop-dot">6</div>
+                  <div class="stop-label">Santa Monica Pier</div>
+                  <div class="stop-time">18:00</div>
+                </div>
+              </div>
+              <div class="drive-segs">
+                <span class="drive-seg">飯店 → ① 約 25 min</span>
+                <span class="drive-seg">① → ② 約 20 min</span>
+                <span class="drive-seg">② → ③ 步行 5 min</span>
+                <span class="drive-seg">③ → ④ 約 15 min</span>
+                <span class="drive-seg">④ → ⑤ 約 15 min</span>
+                <span class="drive-seg">⑤ → ⑥ 約 25 min</span>
+              </div>
+              <iframe
+                class="la-map-iframe"
+                src="https://maps.google.com/maps?f=d&saddr=Sheraton+Los+Angeles+San+Gabriel&daddr=California+Science+Center,+Los+Angeles,+CA+to:7009+Sunset+Blvd,+Hollywood,+CA+to:Hollywood+Walk+of+Fame,+Los+Angeles,+CA+to:Griffith+Observatory,+Los+Angeles,+CA+to:7001+Santa+Monica+Blvd,+Los+Angeles,+CA+to:Santa+Monica+Pier,+Santa+Monica,+CA&hl=zh-TW&output=embed"
+                allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+
+            <div class="hbox" style="background:#FFF0EE;border:1px solid #F5C0B8;color:#8A1A0A;margin-top:12px;">
+              <span>⚠️</span>
+              <span><strong>注意：Endeavour 太空梭</strong>自 2023/12/31 起已下架展示，等待新館 Samuel Oschin Air and Space Center 開放。5/1 去時 100% 看不到太空梭。科學中心仍有 Science Storms（龍捲風、閃電）、生態系展覽、IMAX 可看，但最大亮點消失。</span>
+            </div>
+            <div class="hbox" style="background:#FFF0EE;border:1px solid #F5C0B8;color:#8A1A0A;margin-top:8px;">
+              <span>😐</span>
+              <span><strong>星光大道</strong>對國中小學生吸引力最低 — 不認識明星、只是走路看地上的星星，約 20 分鐘就會膩。</span>
+            </div>
+            <div class="hbox" style="background:#FFF0EE;border:1px solid #F5C0B8;color:#8A1A0A;margin-top:8px;">
+              <span>🤖</span>
+              <span><strong>Tesla Diner</strong> 完全切中 VEX IQ 主題！Optimus 機器人服務、未來科技氛圍 — 就在 Griffith → Santa Monica 的路上，完全不繞路！<br><small>⚠️ Optimus 機器人為實驗性展示，偶有「休息」情況，但展示區永遠開放參觀。</small></span>
+            </div>
+          </div>
+
+          <!-- SHARED MEALS & HOTEL -->
           <div class="meals" style="margin-top:11px"><div class="meal">早餐<span>飯店</span></div><div class="meal">午餐<span>In-N-Out</span></div><div class="meal">下午<span>Tesla Diner</span></div><div class="meal">晚餐<span>自理</span></div></div>
           <div class="hotel-row">🏨 <strong>Sheraton Los Angeles San Gabriel</strong></div>
         </div>
@@ -751,6 +903,23 @@ function showPage(id) {
     );
   });
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function switchVersion(v) {
+  document.getElementById('panel-a').classList.toggle('active', v === 'a');
+  document.getElementById('panel-b').classList.toggle('active', v === 'b');
+  var btnA = document.getElementById('vbtn-a');
+  var btnB = document.getElementById('vbtn-b');
+  btnA.className = 'version-btn' + (v === 'a' ? ' active-a' : '');
+  btnB.className = 'version-btn' + (v === 'b' ? ' active-b' : '');
+}
+
+function switchSimpleVer(v, el) {
+  document.getElementById('sv-a').classList.toggle('active', v === 'a');
+  document.getElementById('sv-b').classList.toggle('active', v === 'b');
+  var btns = el.parentElement.querySelectorAll('.simple-ver-btn');
+  btns.forEach(function(b){ b.className = 'simple-ver-btn'; });
+  el.classList.add(v === 'a' ? 'sva' : 'svb');
 }
 </script>
 </body>
